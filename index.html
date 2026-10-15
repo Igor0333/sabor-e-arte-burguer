@@ -1,63 +1,578 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sabor & Arte Burguer | Hamburgueria Artesanal</title>
-  <!-- CSS Embutido para simplificar o teste -->
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-    body { background-color: #121212; color: #ffffff; text-align: center; padding: 20px; }
-    header { margin-top: 40px; margin-bottom: 30px; }
-    h1 { color: #ff6b00; font-size: 2.5rem; margin-bottom: 10px; }
-    p { color: #cccccc; font-size: 1.1rem; }
-    .hero { margin: 40px 0; }
-    .btn-whatsapp {
-      background-color: #25d366;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      display: inline-block;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: 0.3s;
-    }
-    .btn-whatsapp:hover { background-color: #1ebd56; transform: scale(1.05); }
-    .cardapio { margin-top: 50px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .item { background: #1e1e1e; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ff6b00; }
-    .item h3 { font-size: 1.2rem; display: flex; justify-content: space-between; }
-    .item p { font-size: 0.9rem; margin-top: 5px; }
-    .preco { color: #ff6b00; }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>🍔 Sabor & Arte Burguer</h1>
-    <p>Os melhores hambúrgueres artesanais da cidade!</p>
-  </header>
-
-  <section class="hero">
-    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!" target="_blank" class="btn-whatsapp">
-      Fazer Pedido via WhatsApp
-    </a>
-  </section>
-
-  <section class="cardapio">
-    <h2 style="color: #ff6b00; margin-bottom: 20px; text-align: center;">Nosso Cardápio</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor & Arte Burguer | Hamburgueria Artesanal & Experiência Gastronômica</title>
     
-    <div class="item">
-      <h3>Classic Burguer <span class="preco">R$ 28,90</span></h3>
-      <p>Pão brioche, 180g de carne artesanal, queijo cheddar e molho especial da casa.</p>
-    </div>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Playfair Display (Serif Elegante) + Plus Jakarta Sans (Serafina/Clean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <div class="item">
-      <h3>Bacon Supreme <span class="preco">R$ 34,90</span></h3>
-      <p>Pão australiano, 180g de carne, queijo prato, muito bacon crocante e geleia de pimenta.</p>
-    </div>
-  </section>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#faf8f5',
+                            100: '#f4f0ea',
+                            200: '#e8dfd3',
+                            300: '#d5c7b3'
+                        },
+                        charcoal: {
+                            800: '#252623',
+                            900: '#1c1d1a',
+                            950: '#121311'
+                        },
+                        rust: {
+                            600: '#a3382d',
+                            700: '#8c2d23',
+                            800: '#73221a'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 
+    <style>
+        /* Personalização Fina de Barras e Animações */
+        ::selection {
+            background-color: #8c2d23;
+            color: #f4f0ea;
+        }
+        
+        .backdrop-blur-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Efeito de transição suave em imagens */
+        .img-zoom {
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .img-container:hover .img-zoom {
+            transform: scale(1.04);
+        }
+    </style>
+</head>
+<body class="bg-cream-100 text-charcoal-900 font-sans antialiased selection:bg-rust-700 selection:text-cream-50">
+
+    <!-- NAV BAR -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-nav bg-cream-100/90 border-b border-cream-200/60">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="font-serif text-2xl lg:text-3xl tracking-tight text-charcoal-900 font-medium">
+                SABOR <span class="font-light italic text-rust-700">&</span> ARTE
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs tracking-widest uppercase text-charcoal-800 font-medium">
+                <a href="#sobre" class="hover:text-rust-700 transition-colors duration-200">Sobre</a>
+                <a href="#cardapio" class="hover:text-rust-700 transition-colors duration-200">Cardápio</a>
+                <a href="#experiencia" class="hover:text-rust-700 transition-colors duration-200">Espaço</a>
+                <a href="#contato" class="hover:text-rust-700 transition-colors duration-200">Reservas</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20ou%20reserva." 
+                   target="_blank"
+                   class="inline-block bg-rust-700 hover:bg-rust-800 text-cream-50 text-xs uppercase tracking-widest px-6 py-3 transition-colors duration-300 rounded-sm">
+                    Pedir no WhatsApp
+                </a>
+            </div>
+
+            <!-- Botão Mobile -->
+            <button id="menu-btn" class="md:hidden text-charcoal-900 focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-100 border-b border-cream-200 px-6 py-6 space-y-4">
+            <a href="#sobre" class="block text-sm uppercase tracking-widest text-charcoal-900 py-2 border-b border-cream-200/50">Sobre</a>
+            <a href="#cardapio" class="block text-sm uppercase tracking-widest text-charcoal-900 py-2 border-b border-cream-200/50">Cardápio</a>
+            <a href="#experiencia" class="block text-sm uppercase tracking-widest text-charcoal-900 py-2 border-b border-cream-200/50">Espaço</a>
+            <a href="#contato" class="block text-sm uppercase tracking-widest text-charcoal-900 py-2">Reservas</a>
+            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20ou%20reserva." 
+               target="_blank" 
+               class="block text-center w-full bg-rust-700 text-cream-50 text-xs uppercase tracking-widest py-3 mt-4">
+                Pedir no WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative min-h-screen flex items-center pt-20 bg-charcoal-950 text-cream-100 overflow-hidden">
+        <!-- Background Overlay com Imagem Ambientes/Gourmet -->
+        <div class="absolute inset-0 opacity-35 bg-cover bg-center" 
+             style="background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1920&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/60 to-transparent"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 w-full">
+            <div class="max-w-3xl space-y-8">
+                <span class="text-xs uppercase tracking-widest text-cream-300 font-medium block">Hamburgueria Artesanal & Cozinha Autoral</span>
+                
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.05] tracking-tight">
+                    O essencial, <br>
+                    <span class="italic font-light text-cream-200">à mesa.</span>
+                </h1>
+                
+                <p class="text-cream-300 text-base md:text-lg font-light leading-relaxed max-w-xl">
+                    Da seleção rigorosa do blend de carnes ao fogo alto na grelha. Uma experiência gastronômica artesanal pensada para desacelerar o tempo e valorizar o sabor real.
+                </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 sm:items-center">
+                    <a href="#cardapio" 
+                       class="inline-block text-center bg-rust-700 hover:bg-rust-800 text-cream-50 text-xs uppercase tracking-widest px-8 py-4 transition-colors duration-300 rounded-sm">
+                        Ver Cardápio
+                    </a>
+                    <a href="#contato" 
+                       class="inline-block text-center border border-cream-200/40 hover:border-cream-100 text-cream-100 text-xs uppercase tracking-widest px-8 py-4 transition-all duration-300 rounded-sm">
+                        Reservar Mesa
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-12 hidden lg:flex items-center space-x-4 text-cream-300 text-xs tracking-widest uppercase opacity-60">
+            <span class="w-8 h-[1px] bg-cream-300"></span>
+            <span>Deslize para explorar</span>
+        </div>
+    </section>
+
+    <!-- 2. STORY SECTION (Há muito mais em cada ingrediente) -->
+    <section id="sobre" class="py-24 lg:py-32 bg-cream-100 border-b border-cream-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-rust-700 font-semibold block">Nossa Filosofia</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-900 leading-tight">
+                        Há muito mais em cada ingrediente.
+                    </h2>
+                    <p class="text-charcoal-800 text-base leading-relaxed font-light">
+                        Não acreditamos em atalhos. Nossos pães artesanais de fermentação natural são assados diariamente, os queijos são maturados de produtores locais e os molhos produzidos do zero em nossa cozinha.
+                    </p>
+                    <p class="text-charcoal-800 text-base leading-relaxed font-light">
+                        Cada hambúrguer reflete nosso respeito à técnica culinária clássica aliada ao frescor do campo.
+                    </p>
+                    <div class="pt-4">
+                        <a href="#experiencia" class="inline-flex items-center text-xs uppercase tracking-widest text-rust-700 font-semibold hover:text-rust-800 group">
+                            Conheça nosso espaço 
+                            <i class="fa-solid fa-arrow-right-long ml-3 transition-transform group-hover:translate-x-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative img-container overflow-hidden rounded-sm shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Ingredientes Frescos e Selecionados" 
+                             class="w-full h-[480px] object-cover img-zoom">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MENU HIGHLIGHTS SECTION -->
+    <section id="cardapio" class="py-24 lg:py-32 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-cream-200">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-rust-700 font-semibold block mb-2">Seleção Especial</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-900">Sabores que ficam.</h2>
+                </div>
+                <p class="text-charcoal-800 text-sm max-w-md font-light mt-4 md:mt-0">
+                    Nossa curadoria de pratos mais apreciados pela casa, combinando blends suculentos e acompanhamentos marcantes.
+                </p>
+            </div>
+
+            <!-- Grid de 3 Colunas -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Prato 1 -->
+                <div class="group bg-cream-100 p-6 rounded-sm border border-cream-200/80 transition-all duration-300 hover:shadow-lg">
+                    <div class="overflow-hidden img-container mb-6 h-64">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop" 
+                             alt="O Hambúrguer Rústico" 
+                             class="w-full h-full object-cover img-zoom">
+                    </div>
+                    <div class="flex justify-between items-baseline mb-2">
+                        <h3 class="font-serif text-2xl text-charcoal-900">O Rústico da Casa</h3>
+                        <span class="font-serif text-xl text-rust-700">R$ 44</span>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest text-rust-700 mb-3 font-medium">Blend 180g • Queijo Canastra</p>
+                    <p class="text-charcoal-800 text-sm font-light leading-relaxed">
+                        Pão brioche de fermentação natural, blend de Angus 180g, queijo Canastra derretido, bacon artesanal defumado e maionese de alho negro.
+                    </p>
+                </div>
+
+                <!-- Prato 2 -->
+                <div class="group bg-cream-100 p-6 rounded-sm border border-cream-200/80 transition-all duration-300 hover:shadow-lg">
+                    <div class="overflow-hidden img-container mb-6 h-64">
+                        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop" 
+                             alt="Trufado Supremo" 
+                             class="w-full h-full object-cover img-zoom">
+                    </div>
+                    <div class="flex justify-between items-baseline mb-2">
+                        <h3 class="font-serif text-2xl text-charcoal-900">Trufado Supremo</h3>
+                        <span class="font-serif text-xl text-rust-700">R$ 48</span>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest text-rust-700 mb-3 font-medium">Blend 180g • Cogumelos</p>
+                    <p class="text-charcoal-800 text-sm font-light leading-relaxed">
+                        Blend bovino duplo na chapa, cogumelos salteados na manteiga de trufas brancas, queijo gruyère e rúcula fresca.
+                    </p>
+                </div>
+
+                <!-- Prato 3 -->
+                <div class="group bg-cream-100 p-6 rounded-sm border border-cream-200/80 transition-all duration-300 hover:shadow-lg">
+                    <div class="overflow-hidden img-container mb-6 h-64">
+                        <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?q=80&w=800&auto=format&fit=crop" 
+                             alt="Entradas e Batatas Crocantes" 
+                             class="w-full h-full object-cover img-zoom">
+                    </div>
+                    <div class="flex justify-between items-baseline mb-2">
+                        <h3 class="font-serif text-2xl text-charcoal-900">Rústicas com Páprica</h3>
+                        <span class="font-serif text-xl text-rust-700">R$ 28</span>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest text-rust-700 mb-3 font-medium">Entrada • Para Compartilhar</p>
+                    <p class="text-charcoal-800 text-sm font-light leading-relaxed">
+                        Batatas cortadas à mão, fritas com casca, temperadas com ervas finas, páprica defumada e servidas com aioli de limão siciliano.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Botão Pedido Direto -->
+            <div class="mt-16 text-center">
+                <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20ver%20o%20cardápio%20completo%20e%20fazer%20um%20pedido." 
+                   target="_blank"
+                   class="inline-block bg-rust-700 hover:bg-rust-800 text-cream-50 text-xs uppercase tracking-widest px-10 py-4 transition-colors duration-300 rounded-sm">
+                   <i class="fa-brands fa-whatsapp mr-2 text-base align-middle"></i> Pedir Cardápio Completo via WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. DARK BANNER SECTION (Deixe a cozinha conduzir) -->
+    <section class="py-24 bg-charcoal-900 text-cream-100 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7">
+                    <div class="relative img-container overflow-hidden rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" 
+                             alt="Preparo Culinário" 
+                             class="w-full h-[450px] object-cover img-zoom opacity-90">
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-8">
+                    <span class="text-xs uppercase tracking-widest text-cream-300 font-semibold block">A Arte do Fogo</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-cream-50 leading-tight">
+                        Deixe a cozinha conduzir.
+                    </h2>
+                    <p class="text-cream-300 text-base font-light leading-relaxed">
+                        Cada burger é preparado ao momento na parrilla a carvão e lenha de laranjeira, garantindo aquele sabor defumado inconfundível.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 pt-4 border-t border-charcoal-800">
+                        <div>
+                            <span class="block text-xs uppercase tracking-widest text-rust-600 font-semibold mb-1">Horário</span>
+                            <p class="text-sm font-light text-cream-200">Ter a Dom: 18h às 23h30</p>
+                        </div>
+                        <div>
+                            <span class="block text-xs uppercase tracking-widest text-rust-600 font-semibold mb-1">Atendimento</span>
+                            <p class="text-sm font-light text-cream-200">Presencial & Delivery</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VALORES E DIFERENCIAIS -->
+    <section class="py-20 bg-cream-200/50 border-y border-cream-300/60">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <div class="space-y-3">
+                    <span class="font-serif text-3xl text-rust-700 block">01</span>
+                    <h3 class="font-serif text-2xl text-charcoal-900">Blend no Ponto Perfeito</h3>
+                    <p class="text-charcoal-800 text-sm font-light leading-relaxed">
+                        Cortes nobres moídos diariamente para garantir extrema suculência e textura perfeita a cada mordida.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="font-serif text-3xl text-rust-700 block">02</span>
+                    <h3 class="font-serif text-2xl text-charcoal-900">Fermentação Natural</h3>
+                    <p class="text-charcoal-800 text-sm font-light leading-relaxed">
+                        Nossos pães descansam por 24 horas antes de irem ao forno, resultando em leveza e digestibilidade incomparáveis.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="font-serif text-3xl text-rust-700 block">03</span>
+                    <h3 class="font-serif text-2xl text-charcoal-900">Ingredientes Locais</h3>
+                    <p class="text-charcoal-800 text-sm font-light leading-relaxed">
+                        Apoiamos pequenos produtores da região, garantindo hortifrúti fresco e queijos artesanais autênticos.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CHEF / HISTÓRIA SECTION -->
+    <section class="py-24 lg:py-32 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 order-2 lg:order-1 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-rust-700 font-semibold block">Nossa Equipe</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-900 leading-tight">
+                        Uma cozinha de afeto e intenção.
+                    </h2>
+                    <p class="text-charcoal-800 text-base font-light leading-relaxed">
+                        Fundada pela paixão de unir a alta gastronomia com a descontração da comida de rua, a Sabor & Arte nasceu da vontade de criar momentos memoráveis ao redor da mesa.
+                    </p>
+                    
+                    <blockquote class="font-serif italic text-xl text-rust-700 pt-4 border-l-2 border-rust-700 pl-4">
+                        "O segredo de um bom hambúrguer é o respeito absoluto por cada processo."
+                    </blockquote>
+                </div>
+
+                <div class="lg:col-span-7 order-1 lg:order-2">
+                    <div class="relative img-container overflow-hidden rounded-sm shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Chef preparando o hambúrguer" 
+                             class="w-full h-[500px] object-cover img-zoom">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. GALERIA DO ESPAÇO (Um lugar para ficar) -->
+    <section id="experiencia" class="py-24 bg-cream-50 border-t border-cream-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-rust-700 font-semibold block">Nosso Ambiente</span>
+                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-900">Um lugar para ficar.</h2>
+                <p class="text-charcoal-800 text-sm font-light">
+                    Iluminação acolhedora, música selecionada e arquitetura pensada para aconchegar seus encontros.
+                </p>
+            </div>
+
+            <!-- Grid de Imagens do Salão -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="img-container overflow-hidden rounded-sm h-[380px] shadow-md">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Interior do restaurante salão" 
+                         class="w-full h-full object-cover img-zoom">
+                </div>
+                <div class="img-container overflow-hidden rounded-sm h-[380px] shadow-md">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Detalhes das mesas e luzes" 
+                         class="w-full h-full object-cover img-zoom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CITACÃO EDITORIAL -->
+    <section class="py-20 bg-cream-200/40 text-center border-y border-cream-300/50">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="font-serif italic text-2xl sm:text-3xl text-charcoal-900 leading-relaxed">
+                "Da primeira mordida ao último gole de cerveja artesanal, tudo tem intenção. Uma experiência para guardar na memória."
+            </p>
+            <span class="text-xs uppercase tracking-widest text-rust-700 font-semibold block mt-6">Sabor & Arte Burguer</span>
+        </div>
+    </section>
+
+    <!-- 9. FORMULÁRIO DE RESERVA / CONTATO (Frontend Interativo via WhatsApp) -->
+    <section id="contato" class="py-24 lg:py-32 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-rust-700 font-semibold block">Reservas & Atendimento</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-900">
+                        A mesa está à sua espera.
+                    </h2>
+                    <p class="text-charcoal-800 text-base font-light leading-relaxed">
+                        Faça sua reserva antecipada para garantir o seu lugar ou envie uma mensagem direta para tirar dúvidas.
+                    </p>
+
+                    <div class="space-y-4 pt-4 border-t border-cream-200">
+                        <div class="flex items-start space-x-4">
+                            <i class="fa-solid fa-location-dot text-rust-700 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium text-sm text-charcoal-900">Localização</h4>
+                                <p class="text-xs text-charcoal-800 font-light">Rua Principal das Flores, 123 - Centro</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <i class="fa-solid fa-phone text-rust-700 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium text-sm text-charcoal-900">Telefone / WhatsApp</h4>
+                                <p class="text-xs text-charcoal-800 font-light">(11) 99999-9999</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário -->
+                <div class="lg:col-span-7 bg-cream-50 p-8 sm:p-12 rounded-sm border border-cream-200 shadow-sm">
+                    <h3 class="font-serif text-2xl text-charcoal-900 mb-6">Solicitar Reserva de Mesa</h3>
+                    
+                    <form id="reserva-form" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-charcoal-800 mb-2 font-medium">Seu Nome</label>
+                                <input type="text" id="nome" required placeholder="Ex: Lucas Silva" 
+                                       class="w-full bg-cream-100 border border-cream-300/80 px-4 py-3 text-sm text-charcoal-900 focus:outline-none focus:border-rust-700 rounded-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-charcoal-800 mb-2 font-medium">Pessoas</label>
+                                <select id="pessoas" class="w-full bg-cream-100 border border-cream-300/80 px-4 py-3 text-sm text-charcoal-900 focus:outline-none focus:border-rust-700 rounded-sm">
+                                    <option value="2 Pessoas">2 Pessoas</option>
+                                    <option value="4 Pessoas">4 Pessoas</option>
+                                    <option value="6 Pessoas">6 Pessoas ou +</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-charcoal-800 mb-2 font-medium">Data</label>
+                                <input type="date" id="data" required 
+                                       class="w-full bg-cream-100 border border-cream-300/80 px-4 py-3 text-sm text-charcoal-900 focus:outline-none focus:border-rust-700 rounded-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-charcoal-800 mb-2 font-medium">Horário Desejado</label>
+                                <input type="time" id="horario" required 
+                                       class="w-full bg-cream-100 border border-cream-300/80 px-4 py-3 text-sm text-charcoal-900 focus:outline-none focus:border-rust-700 rounded-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="submit" 
+                                    class="w-full bg-rust-700 hover:bg-rust-800 text-cream-50 text-xs uppercase tracking-widest py-4 transition-colors duration-300 rounded-sm font-semibold">
+                                Enviar Solicitação via WhatsApp
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal-950 text-cream-300 py-16 border-t border-charcoal-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-charcoal-800">
+                
+                <div class="space-y-4">
+                    <a href="#" class="font-serif text-2xl tracking-tight text-cream-50 font-medium">
+                        SABOR <span class="italic text-rust-600 font-light">&</span> ARTE
+                    </a>
+                    <p class="text-xs font-light text-cream-300 leading-relaxed">
+                        Hamburgueria artesanal autoral. Tradição, fogo e afeto no coração da cidade.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-widest text-cream-50 font-semibold mb-4">Navegação</h4>
+                    <ul class="space-y-2 text-xs font-light">
+                        <li><a href="#sobre" class="hover:text-cream-50">Sobre Nós</a></li>
+                        <li><a href="#cardapio" class="hover:text-cream-50">Cardápio</a></li>
+                        <li><a href="#experiencia" class="hover:text-cream-50">Espaço</a></li>
+                        <li><a href="#contato" class="hover:text-cream-50">Reservas</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-widest text-cream-50 font-semibold mb-4">Horários</h4>
+                    <p class="text-xs font-light leading-relaxed">
+                        Terça a Domingo<br>
+                        18:00h às 23:30h
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-widest text-cream-50 font-semibold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4 text-base">
+                        <a href="#" class="hover:text-rust-600"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-rust-600"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-rust-600"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-cream-300/60">
+                <p>&copy; 2026 Sabor & Arte Burguer. Todos os direitos reservados.</p>
+                <p class="mt-2 sm:mt-0">Desenvolvido com excelência por sua Agência Web</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE INTERAÇÃO -->
+    <script>
+        // Toggle do Menu Mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar num link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Redirecionamento do Formulário de Reserva direto para o WhatsApp
+        document.getElementById('reserva-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const pessoas = document.getElementById('pessoas').value;
+            const data = document.getElementById('data').value;
+            const horario = document.getElementById('horario').value;
+
+            const mensagem = `Olá! Gostaria de solicitar uma reserva:%0A%0A- *Nome:* ${nome}%0A- *Pessoas:* ${pessoas}%0A- *Data:* ${data}%0A- *Horário:* ${horario}`;
+            const numeroWhatsApp = "5511999999999"; // Substituir pelo número real do restaurante
+
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
+        });
+    </script>
 </body>
 </html>
