@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabor & Arte Burguer | Hamburgueria Artesanal</title>
+  <!-- CSS Embutido para simplificar o teste -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background-color: #121212; color: #ffffff; text-align: center; padding: 20px; }
+    header { margin-top: 40px; margin-bottom: 30px; }
+    h1 { color: #ff6b00; font-size: 2.5rem; margin-bottom: 10px; }
+    p { color: #cccccc; font-size: 1.1rem; }
+    .hero { margin: 40px 0; }
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    .btn-whatsapp:hover { background-color: #1ebd56; transform: scale(1.05); }
+    .cardapio { margin-top: 50px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .item { background: #1e1e1e; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ff6b00; }
+    .item h3 { font-size: 1.2rem; display: flex; justify-content: space-between; }
+    .item p { font-size: 0.9rem; margin-top: 5px; }
+    .preco { color: #ff6b00; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍔 Sabor & Arte Burguer</h1>
+    <p>Os melhores hambúrgueres artesanais da cidade!</p>
+  </header>
+
+  <section class="hero">
+    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!" target="_blank" class="btn-whatsapp">
+      Fazer Pedido via WhatsApp
+    </a>
+  </section>
+
+  <section class="cardapio">
+    <h2 style="color: #ff6b00; margin-bottom: 20px; text-align: center;">Nosso Cardápio</h2>
+    
+    <div class="item">
+      <h3>Classic Burguer <span class="preco">R$ 28,90</span></h3>
+      <p>Pão brioche, 180g de carne artesanal, queijo cheddar e molho especial da casa.</p>
+    </div>
+
+    <div class="item">
+      <h3>Bacon Supreme <span class="preco">R$ 34,90</span></h3>
+      <p>Pão australiano, 180g de carne, queijo prato, muito bacon crocante e geleia de pimenta.</p>
+    </div>
+  </section>
+
+</body>
+</html>
